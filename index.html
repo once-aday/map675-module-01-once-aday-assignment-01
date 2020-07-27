@@ -45,7 +45,7 @@
 <script>
 
     var map = L.map('map',{
-    center: [28.3629984, -81.5721204], // gran destino
+    center: [28.3701879, -81.5587651], // gran destino
     zoom: 17
     });
 
@@ -53,13 +53,35 @@
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+    var osmb = new OSMBuildings(map)
+
     // new OSMBuildings(map).load();
     // var layer = new L.GeoJSON.AJAX("data/gran_destino_tower.geojson");
 
+    // Load Gran destino
+    // Loc: 28.3629923, -81.5719927
     $.getJSON('data/gran_destino_tower.geojson', function (data) {
       console.log(data);
-      new OSMBuildings(map).set(data);
+      osmb.set(data);
     });
+
+    // Load Grand Floridian
+    // Loc: 28.410967, -81.5879303
+    $.getJSON('data/grand_floridian.geojson', function (data) {
+      console.log(data);
+      osmb.set(data);
+    });
+
+    // Load Yacht club
+    // Loc: 28.3701879, -81.5587651
+    $.getJSON('data/yacht_club.geojson', function (data) {
+      console.log(data);
+      osmb.set(data);
+    });
+
+    function adjustMap(newZoom, newXY) {
+        map.flyTo(newXY, newZoom)
+    }
 
     // var geoJSON = {
     //   "type": "FeatureCollection",
