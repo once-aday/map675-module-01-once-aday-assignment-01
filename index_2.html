@@ -21,10 +21,10 @@
     ></script>
 
     <script src="js/leaflet.ajax.min.js"></script>
-    <script src="https://cdn.osmbuildings.org/classic/0.2.2b/OSMBuildings-Leaflet.js"></script>
 
-    <link href="https://cdn.osmbuildings.org/4.0.0/OSMBuildings.css" rel="stylesheet">
-  <script src="https://cdn.osmbuildings.org/4.0.0/OSMBuildings.js"></script>
+    <link href="https://cdn.osmbuildings.org/4.1.1/OSMBuildings.css" rel="stylesheet">
+
+    <script src="https://cdn.osmbuildings.org/4.1.1/OSMBuildings.js"></script>
 
 
     <script
@@ -132,19 +132,35 @@
 
 <script>
 
-    var map = L.map('map',{
-    center: [28.3701879, -81.5587651], // gran destino
-    zoom: 17,
-    zoomControl: false
-    });
+    // var map = L.map('map',{
+    // center: [28.3701879, -81.5587651], // gran destino
+    // zoom: 17,
+    // zoomControl: false
+    // });
 
-    new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
+    var map = new OSMBuildings({
+    	container: 'map',
+    	position: { latitude: 28.3629923, longitude: -81.5719927 }, // grand destino 28.3629923, -81.5719927
+    	zoom: 16.5,
+    	minZoom: 14.5,
+    	maxZoom: 20,
+      tilt: 45,
+      rotation: 300,
+      style: { color: 'rgb(220, 210, 200)' },
+    	attribution: '© Data <a href="https://openstreetmap.org/copyright/">OpenStreetMap</a> © Map <a href="https://mapbox.com/">Mapbox</a> © 3D <a href="https://osmbuildings.org/copyright/">OSM Buildings</a>'
+    })
+    // map.addMapTiles('https://{s}.tiles.mapbox.com/v3/[pk.eyJ1Ijoicm9jay1vbiIsImEiOiJjazdmamdqM2swM2tiM2RzMTVzZHo0azE4In0.R7p1gm6-ACCcAzC68BfdXw]/{z}/{x}/{y}.png');
+    map.addMapTiles('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
 
-    var osmb = new OSMBuildings(map)
+
+    // new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
+
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    // }).addTo(map);
+
+    // var osmb = new OSMBuildings(map)
 
 
 
@@ -156,28 +172,51 @@
     // Loc: 28.3629923, -81.5719927
     $.getJSON('data/gran_destino_tower.geojson', function (data) {
       console.log(data);
-      osmb.set(data);
+      map.addGeoJSON(data, {color: "rgb(6, 208, 29)"});
     });
 
     // Load Grand Floridian
     // Loc: 28.410967, -81.5879303
     $.getJSON('data/grand_floridian.geojson', function (data) {
       console.log(data);
-      osmb.set(data);
+      map.addGeoJSON(data, {color: "rgb(255,128,0)"});
     });
 
     // Load Yacht club
     // Loc: 28.3701879, -81.5587651
     $.getJSON('data/yacht_club.geojson', function (data) {
         console.log(data);
-        osmb.set(data);
+        // map.addGeoJSON(data);
+        map.addGeoJSON(data, {scale: 1});
       });
 
       $(document).ready(function() {
-        $('#yacht-box').click(function(event) {
-               console.log("Yacht Button pressed")
-               adjustMap(17, 5, [28.3701879, -81.5587651])
+        // Destino
+        $('#destino-box').click(function(event) {
+               console.log("destino-box Button pressed")
+               adjustMap(17, 45, [28.3629923, -81.5719927])
+        });
+        $('#destino-box').mouseover(function(event) {
+               $("#destino-box").css({border: '3px solid rgba(6, 208, 29,0.50)'});
+        });
+        $('#destino-box').mouseout(function(event) {
+               $("#destino-box").css({border: '3px solid #f7f7f7'});
+        });
 
+        // Floridian
+        });
+        $('#floridian-box').mouseover(function(event) {
+               $("#floridian-box").css({border: '3px solid rgba(92, 167, 255,0.50)'});
+        });
+        $('#floridian-box').mouseout(function(event) {
+               $("#floridian-box").css({border: '3px solid #f7f7f7'});
+        });
+
+        $('#floridian-box').click(function(event) {
+               console.log("floridian Button pressed")
+               adjustMap(17, 45, [28.410967, -81.5879303])
+
+        // Yacht Hotel
         });
         $('#yacht-box').mouseover(function(event) {
                $("#yacht-box").css({border: '3px solid rgba(255,128,0,0.50)'});
@@ -185,14 +224,27 @@
         $('#yacht-box').mouseout(function(event) {
                $("#yacht-box").css({border: '3px solid #f7f7f7'});
         });
+        $('#yacht-box').click(function(event) {
+               console.log("yacht Button pressed")
+               adjustMap(17, 45, [28.3701879, -81.5587651])
 
     });
 
 
     function adjustMap(newZoom, newTilt, newXY) {
       console.log("Adjusting map..")
-        map.flyTo(newXY, newZoom)
+        // map.flyTo(newXY, newZoom)
+        map.setPosition({ latitude: newXY[0], longitude: newXY[1] })
         map.setTilt(50)
+        // rotate()
+    }
+
+    let rotation = 0;
+
+    function rotate () {
+      map.setRotation(rotation);
+      rotation = (rotation+1) % 360;
+      requestAnimationFrame(rotate);
     }
 
     // var geoJSON = {
