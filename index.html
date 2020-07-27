@@ -37,20 +37,44 @@
     z-index: -1;
 }
 
-.team-box-bottom  {
-  border-radius: 5px 5px 0px 0px;
-  background-color: rgba(38, 19, 0, 0.39);
+.team-box  {
+  border-radius: 5px 5px 5px 5px;
+  background-color: rgba(209, 209, 208, 0.90);
   /* padding: 20px; */
-  width: 15px;
-  height: 300px;
-  position:absolute;
+  width: 20px;
+  height: 200px;
+  position: relative;
   float: left;
-  padding: 20px;
+  padding: 10px;
   margin: 10px;
   bottom: 0%;
   /* position: fixed; */
-  bottom:0;
+  /* bottom:0; */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
+#destino-box {
+  border: 8px solid #f7f7f7;
+}
+#floridian-box {
+  border: 8px solid #f7f7f7;
+}
+#yacht-box {
+  border: 8px solid #f7f7f7;
+}
+.team-icon {
+    height: 10px;
+    width: 10px;
+    display: inline;
+    float: none;
+    margin: auto;
+}
+
+.team-icon img {
+   width: 100%;
+   /* height: 100%; */
+}
+
 </style>
 
 </head>
@@ -58,16 +82,57 @@
 <body>
 
     <div id="map"></div>
+    <!-- Hotel Destino Box -->
+    <div id="destino-box" class="team-box">
+      <div class="team-icon">
+      <img src="images/hotel_destino/team_icons/bucks.png" alt="bucks">
+      <img src="images/hotel_destino/team_icons/celtics.png" alt="celtics">
+      <img src="images/hotel_destino/team_icons/clippers.png" alt="bucks">
+      <img src="images/hotel_destino/team_icons/heat.png" alt="heat">
+      <img src="images/hotel_destino/team_icons/jazz.png" alt="jazz">
+      <img src="images/hotel_destino/team_icons/lakers.png" alt="lakers">
+      <img src="images/hotel_destino/team_icons/nuggets.png" alt="nuggets">
+      <img src="images/hotel_destino/team_icons/raptors.png" alt="raptors">
+    </div>
 
-    <div class="team-box-bottom">Team</div>
-    <div class="team-box-bottom">Team</div>
+  </div>
+  <!-- Hotel Floridian Box -->
+  <div class="team-box">
+    <div class="team-icon">
+    <img src="images/hotel_floridian/team_icons/76ers.png" alt="76ers">
+    <img src="images/hotel_floridian/team_icons/grizzlies.png" alt="grizzlies">
+    <img src="images/hotel_floridian/team_icons/magic.png" alt="magic">
+    <img src="images/hotel_floridian/team_icons/mavericks.png" alt="mavericks">
+    <img src="images/hotel_floridian/team_icons/nets.png" alt="nets">
+    <img src="images/hotel_floridian/team_icons/pacers.png" alt="pacers">
+    <img src="images/hotel_floridian/team_icons/rockets.png" alt="rockets">
+    <img src="images/hotel_floridian/team_icons/thunder.png" alt="thunder">
+  </div>
+
+</div>
+
+<!-- Hotel Yache Club Box -->
+<div class="team-box">
+  <div class="team-icon">
+  <img src="images/hotel_yacht/team_icons/blazers.png" alt="blazers">
+  <img src="images/hotel_yacht/team_icons/kings.png" alt="kings">
+  <img src="images/hotel_yacht/team_icons/pelicans.png" alt="pelicans">
+  <img src="images/hotel_yacht/team_icons/spurs.png" alt="spurs">
+  <img src="images/hotel_yacht/team_icons/suns.png" alt="suns">
+  <img src="images/hotel_yacht/team_icons/wizards.png" alt="wizards">
+</div>
+
+</div>
 
 <script>
 
     var map = L.map('map',{
     center: [28.3701879, -81.5587651], // gran destino
-    zoom: 17
+    zoom: 17,
+    zoomControl: false
     });
+
+    new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
