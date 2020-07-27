@@ -26,3 +26,15 @@ Next:
 
     - Dynamic Coloring
     - Pop up information and change color on mouse hover
+
+*corner-buttons branch*
+
+  I began finding additional data for the teams staying at the 3 hotels. I used css to scale them into individual columns which will serve as buttons. These buttons are a key feature of this web map and will be the primary user interaction to direct the map to pan to the different hotels.
+
+  Next I plan to match the color of the buildings to the color of the buttons. After that I will link the buttons to trigger a map pan action to the given team's hotel. That will complete the feature and I will merge this branch into the main project.
+
+  I realized I needed to update to the NEW Osmbuildings to allow for tilting and other map options.
+  This is osmbuildings 4.1.1
+
+  Now I can use:
+  https://osmbuildings.org/documentation/viewer/api/#method-addGeoJSON
