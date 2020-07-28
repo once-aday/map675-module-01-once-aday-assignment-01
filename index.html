@@ -52,7 +52,7 @@
   position: relative;
   float: left;
   padding: 10px;
-  margin: 10px;
+  margin: 90px 10px 10px 10px;
   bottom: 0%;
   /* position: fixed; */
   /* bottom:0; */
@@ -89,6 +89,17 @@
   /* position: absolute; */
   float: right;
 }
+#description {
+  font-family: 'Bebas Neue', cursive;
+  font-size: large;
+  color: white;
+  position: absolute;
+  float: left;
+  width:100%;
+  /* height:100px; */
+  background-color: black;
+  padding: 10px;
+}
 #hotel-info {
   font-family: 'Bebas Neue', cursive;
   font-size: xx-large;
@@ -96,8 +107,9 @@
   position:absolute;
   width:100%;
   height:100px;
-  background-color: rgba(209, 209, 208, 0.45);
+  background-color: rgba(209, 209, 208, 0.90);
   bottom:20px;
+  padding-left: 5px;
   /* right:100%; */
   /* left:100%; */
   /* margin-left:-150px; */
@@ -118,12 +130,13 @@
   width: 30px;
   padding: 5px 35px 5px 5px;
   position: relative;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
   /* margin-top: 48%; */
   /* top: 90%; */
   /* bottom: 125px; */
   /* border-radius: 2px 2px 2px 2px;
   border: 1px solid black; */
-  /* background-color: rgba(209, 209, 208, 0.90); */
+  background-color: grey;
   content:url(images/ui.svg);
 }
 #info-panel-wrapper {
@@ -133,7 +146,14 @@
   bottom: 20px;
   /* background-color: white; */
 }
+.group-container {
 
+}
+.group-number {
+  color:white;
+  position: absolute;
+  /* margin-top: 210px; */
+}
 </style>
 
 </head>
@@ -179,11 +199,15 @@
   <img src="images/hotel_yacht/team_icons/spurs.png" alt="spurs">
   <img src="images/hotel_yacht/team_icons/suns.png" alt="suns">
   <img src="images/hotel_yacht/team_icons/wizards.png" alt="wizards">
+  <!-- <div class='group-number'>G1</div> -->
+</div>
 </div>
 
 
-</div>
-
+<div id='description'>Three hotels groups seen below will be the new home
+  of USA professional basketball<br> teams as the NBA restarts
+it's 2019-20 season at Disney World outside of Orlando, Florida.<br>
+Tap on a group to see a 3d rendering of each hotel and find out where your favorite team is staying.</div>
 <div id='title'>NBA Bubble</div>
 <div id='info-panel-wrapper'>
 <div id='rotate-btn'></div>
