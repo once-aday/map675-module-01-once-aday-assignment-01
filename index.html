@@ -102,17 +102,16 @@
 }
 #hotel-info {
   font-family: 'Bebas Neue', cursive;
+  line-height: 95%;
   font-size: xx-large;
   color: white;
   position:absolute;
   width:100%;
   height:100px;
   background-color: rgba(209, 209, 208, 0.90);
-  bottom:20px;
+  bottom:15px;
   padding-left: 5px;
-  /* right:100%; */
-  /* left:100%; */
-  /* margin-left:-150px; */
+  /* padding-top: 5px; */
 }
 
 #hotel-image {
@@ -153,6 +152,12 @@
   color:white;
   position: absolute;
   /* margin-top: 210px; */
+}
+
+a {
+  font-size: small;
+  text-indent: 10px;
+  /* margin-right: 200px; */
 }
 </style>
 
@@ -211,7 +216,7 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
 <div id='title'>NBA Bubble</div>
 <div id='info-panel-wrapper'>
 <div id='rotate-btn'></div>
-<div id=hotel-info>Hotel 1<br>Gran Destino Tower</div>
+<div id=hotel-info>Hotel 1<br>Gran Destino Tower <br><a href='https://disneyworld.disney.go.com/resorts/coronado-springs-resort/' target='_blank'>Official Website</a></div>
 </div>
 <script>
 
@@ -235,9 +240,9 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
     // map.addMapTiles('https://{s}.tiles.mapbox.com/v3/[pk.eyJ1Ijoicm9jay1vbiIsImEiOiJjazdmamdqM2swM2tiM2RzMTVzZHo0azE4In0.R7p1gm6-ACCcAzC68BfdXw]/{z}/{x}/{y}.png');
     map.addMapTiles('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
-    var destino_text = "Hotel 1<br>Gran Destino Tower"
-    var floridian_text = "Hotel 2<br>Grand Floridian"
-    var yacht_text = "Hotel 3<br>The Yacht Club"
+    var destino_text = "Hotel 1<br>Gran Destino Tower <a href='https://disneyworld.disney.go.com/resorts/coronado-springs-resort/' target='_blank'>Official Website</a>"
+    var floridian_text = "Hotel 2<br>Grand Floridian <a href='https://disneyworld.disney.go.com/resorts/grand-floridian-resort-and-spa/' target='_blank'>Official Website</a>"
+    var yacht_text = "Hotel 3<br>The Yacht Club <a href='https://disneyworld.disney.go.com/resorts/yacht-club-resort/' target='_blank'>Official Website</a>"
     // Load Gran destino
     // Loc: 28.3629923, -81.5719927
     $.getJSON('data/gran_destino_tower.geojson', function (data) {
