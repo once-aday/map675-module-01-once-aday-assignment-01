@@ -32,6 +32,8 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
 
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
 
 <style>
 #map {
@@ -59,7 +61,7 @@
 }
 
 #destino-box {
-  border: 3px solid #f7f7f7;
+  border: 3px solid rgba(6, 208, 29,0.50);
 }
 #floridian-box {
   border: 3px solid #f7f7f7;
@@ -79,6 +81,57 @@
 .team-icon img {
    width: 100%;
    /* height: 100%; */
+}
+#title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: xx-large;
+  color: white;
+  /* position: absolute; */
+  float: right;
+}
+#hotel-info {
+  font-family: 'Bebas Neue', cursive;
+  font-size: xx-large;
+  color: white;
+  position:absolute;
+  width:100%;
+  height:100px;
+  background-color: rgba(209, 209, 208, 0.45);
+  bottom:20px;
+  /* right:100%; */
+  /* left:100%; */
+  /* margin-left:-150px; */
+}
+
+#hotel-image {
+  height: 10px;
+  width: 10px;
+  display: inline;
+  float: left;
+  margin: auto;
+}
+
+#rotate-btn {
+  /* align: bottom; */
+  float: right;
+  height: 30px;
+  width: 30px;
+  padding: 5px 35px 5px 5px;
+  position: relative;
+  /* margin-top: 48%; */
+  /* top: 90%; */
+  /* bottom: 125px; */
+  /* border-radius: 2px 2px 2px 2px;
+  border: 1px solid black; */
+  /* background-color: rgba(209, 209, 208, 0.90); */
+  content:url(images/ui.svg);
+}
+#info-panel-wrapper {
+  height: 165px;
+  width:100%;
+  position:absolute;
+  bottom: 20px;
+  /* background-color: white; */
 }
 
 </style>
@@ -128,8 +181,14 @@
   <img src="images/hotel_yacht/team_icons/wizards.png" alt="wizards">
 </div>
 
+
 </div>
 
+<div id='title'>NBA Bubble</div>
+<div id='info-panel-wrapper'>
+<div id='rotate-btn'></div>
+<div id=hotel-info>Hotel 1<br>Gran Destino Tower</div>
+</div>
 <script>
 
     // var map = L.map('map',{
@@ -152,22 +211,9 @@
     // map.addMapTiles('https://{s}.tiles.mapbox.com/v3/[pk.eyJ1Ijoicm9jay1vbiIsImEiOiJjazdmamdqM2swM2tiM2RzMTVzZHo0azE4In0.R7p1gm6-ACCcAzC68BfdXw]/{z}/{x}/{y}.png');
     map.addMapTiles('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
-
-
-    // new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
-
-    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    // }).addTo(map);
-
-    // var osmb = new OSMBuildings(map)
-
-
-
-
-    // new OSMBuildings(map).load();
-    // var layer = new L.GeoJSON.AJAX("data/gran_destino_tower.geojson");
-
+    var destino_text = "Hotel 1<br>Gran Destino Tower"
+    var floridian_text = "Hotel 2<br>Grand Floridian"
+    var yacht_text = "Hotel 3<br>The Yacht Club"
     // Load Gran destino
     // Loc: 28.3629923, -81.5719927
     $.getJSON('data/gran_destino_tower.geojson', function (data) {
@@ -189,18 +235,27 @@
         // map.addGeoJSON(data);
         map.addGeoJSON(data, {scale: 1});
       });
+      var currentHotel = 'destino';
+      var rotateStatus = false;
+      var gid;
 
       $(document).ready(function() {
         // Destino
         $('#destino-box').click(function(event) {
-               console.log("destino-box Button pressed")
-               adjustMap(17, 45, [28.3629923, -81.5719927])
+               console.log("destino-box Button pressed");
+               adjustMap(17, 45, [28.3629923, -81.5719927]);
+               $("#yacht-box").css({border: '3px solid #f7f7f7'});
+               $("#floridian-box").css({border: '3px solid #f7f7f7'});
+               $("#hotel-info").html(destino_text);
+               currentHotel = 'destino';
         });
         $('#destino-box').mouseover(function(event) {
                $("#destino-box").css({border: '3px solid rgba(6, 208, 29,0.50)'});
         });
         $('#destino-box').mouseout(function(event) {
-               $("#destino-box").css({border: '3px solid #f7f7f7'});
+            if (currentHotel !== 'destino') {
+              $("#destino-box").css({border: '3px solid #f7f7f7'});
+            }
         });
 
         // Floridian
@@ -209,12 +264,18 @@
                $("#floridian-box").css({border: '3px solid rgba(92, 167, 255,0.50)'});
         });
         $('#floridian-box').mouseout(function(event) {
-               $("#floridian-box").css({border: '3px solid #f7f7f7'});
+          if (currentHotel !== 'floridian') {
+            $("#floridian-box").css({border: '3px solid #f7f7f7'});
+          }
         });
 
         $('#floridian-box').click(function(event) {
                console.log("floridian Button pressed")
                adjustMap(17, 45, [28.410967, -81.5879303])
+               $("#yacht-box").css({border: '3px solid #f7f7f7'});
+               $("#destino-box").css({border: '3px solid #f7f7f7'});
+               $("#hotel-info").html(floridian_text);
+               currentHotel = 'floridian';
 
         // Yacht Hotel
         });
@@ -222,13 +283,28 @@
                $("#yacht-box").css({border: '3px solid rgba(255,128,0,0.50)'});
         });
         $('#yacht-box').mouseout(function(event) {
-               $("#yacht-box").css({border: '3px solid #f7f7f7'});
+          if (currentHotel !== 'yacht') {
+            $("#yacht-box").css({border: '3px solid #f7f7f7'});
+          }
         });
         $('#yacht-box').click(function(event) {
                console.log("yacht Button pressed")
                adjustMap(17, 45, [28.3701879, -81.5587651])
+               $("#floridian-box").css({border: '3px solid #f7f7f7'});
+               $("#destino-box").css({border: '3px solid #f7f7f7'});
+               $("#hotel-info").html(yacht_text);
+               currentHotel = 'yacht';
+             });
 
-    });
+         $('#rotate-btn').click(function(event) {
+                console.log("Rotate Button pressed")
+                if (rotateStatus == false) {
+                  rotateOn()
+                } else if (rotateStatus == true) {
+                  console.log("turning off rotate")
+                  rotateOff()
+                }
+              });
 
 
     function adjustMap(newZoom, newTilt, newXY) {
@@ -241,37 +317,20 @@
 
     let rotation = 0;
 
-    function rotate () {
+    function rotateOn () {
       map.setRotation(rotation);
       rotation = (rotation+1) % 360;
-      requestAnimationFrame(rotate);
+      gid = requestAnimationFrame(rotateOn);
+      rotateStatus = true;
     }
 
-    // var geoJSON = {
-    //   "type": "FeatureCollection",
-    //   "features": [{
-    //     "type": "Feature",
-    //     "id": 134,
-    //     "geometry": {
-    //       "type": "Polygon",
-    //       "coordinates": [[
-    //         [13.37356, 52.52064],
-    //         [13.37350, 52.51971],
-    //         [13.37664, 52.51973],
-    //         [13.37594, 52.52062],
-    //         [13.37356, 52.52064]
-    //       ]]
-    //     },
-    //     "properties": {
-    //       "wallColor": "rgb(255,0,0)",
-    //       "roofColor": "rgb(255,128,0)",
-    //       "height": 500,
-    //       "minHeight": 0
-    //     }
-    //   }]
-    // };
+    function rotateOff () {
+      map.setRotation(rotation);
+      rotation = 0;
+      cancelAnimationFrame(gid)
+      rotateStatus = false;
+    }
 
-    // new OSMBuildings(map).set(layer);
 
 </script>
 

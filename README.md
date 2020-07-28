@@ -38,3 +38,7 @@ Next:
 
   Now I can use:
   https://osmbuildings.org/documentation/viewer/api/#method-addGeoJSON
+
+I am going to use the rotate feature as a small button.
+
+Icon attribution html: Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
