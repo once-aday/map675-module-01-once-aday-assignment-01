@@ -82,7 +82,13 @@
    width: 100%;
    /* height: 100%; */
 }
-
+#title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: xx-large;
+  color: white;
+  /* position: absolute; */
+  float: right;
+}
 #hotel-info {
   font-family: 'Bebas Neue', cursive;
   font-size: xx-large;
@@ -103,6 +109,29 @@
   display: inline;
   float: left;
   margin: auto;
+}
+
+#rotate-btn {
+  /* align: bottom; */
+  float: right;
+  height: 30px;
+  width: 30px;
+  padding: 5px 35px 5px 5px;
+  position: relative;
+  /* margin-top: 48%; */
+  /* top: 90%; */
+  /* bottom: 125px; */
+  /* border-radius: 2px 2px 2px 2px;
+  border: 1px solid black; */
+  /* background-color: rgba(209, 209, 208, 0.90); */
+  content:url(images/ui.svg);
+}
+#info-panel-wrapper {
+  height: 165px;
+  width:100%;
+  position:absolute;
+  bottom: 20px;
+  /* background-color: white; */
 }
 
 </style>
@@ -152,10 +181,14 @@
   <img src="images/hotel_yacht/team_icons/wizards.png" alt="wizards">
 </div>
 
+
 </div>
+
+<div id='title'>NBA Bubble</div>
+<div id='info-panel-wrapper'>
 <div id='rotate-btn'></div>
 <div id=hotel-info>Hotel 1<br>Gran Destino Tower</div>
-
+</div>
 <script>
 
     // var map = L.map('map',{
@@ -203,6 +236,8 @@
         map.addGeoJSON(data, {scale: 1});
       });
       var currentHotel = 'destino';
+      var rotateStatus = false;
+      var gid;
 
       $(document).ready(function() {
         // Destino
@@ -258,9 +293,18 @@
                $("#floridian-box").css({border: '3px solid #f7f7f7'});
                $("#destino-box").css({border: '3px solid #f7f7f7'});
                $("#hotel-info").html(yacht_text);
-               currentHotel = 'yacht'
+               currentHotel = 'yacht';
+             });
 
-    });
+         $('#rotate-btn').click(function(event) {
+                console.log("Rotate Button pressed")
+                if (rotateStatus == false) {
+                  rotateOn()
+                } else if (rotateStatus == true) {
+                  console.log("turning off rotate")
+                  rotateOff()
+                }
+              });
 
 
     function adjustMap(newZoom, newTilt, newXY) {
@@ -273,37 +317,20 @@
 
     let rotation = 0;
 
-    function rotate () {
+    function rotateOn () {
       map.setRotation(rotation);
       rotation = (rotation+1) % 360;
-      requestAnimationFrame(rotate);
+      gid = requestAnimationFrame(rotateOn);
+      rotateStatus = true;
     }
 
-    // var geoJSON = {
-    //   "type": "FeatureCollection",
-    //   "features": [{
-    //     "type": "Feature",
-    //     "id": 134,
-    //     "geometry": {
-    //       "type": "Polygon",
-    //       "coordinates": [[
-    //         [13.37356, 52.52064],
-    //         [13.37350, 52.51971],
-    //         [13.37664, 52.51973],
-    //         [13.37594, 52.52062],
-    //         [13.37356, 52.52064]
-    //       ]]
-    //     },
-    //     "properties": {
-    //       "wallColor": "rgb(255,0,0)",
-    //       "roofColor": "rgb(255,128,0)",
-    //       "height": 500,
-    //       "minHeight": 0
-    //     }
-    //   }]
-    // };
+    function rotateOff () {
+      map.setRotation(rotation);
+      rotation = 0;
+      cancelAnimationFrame(gid)
+      rotateStatus = false;
+    }
 
-    // new OSMBuildings(map).set(layer);
 
 </script>
 
