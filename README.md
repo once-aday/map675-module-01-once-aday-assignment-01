@@ -27,7 +27,7 @@ Next:
     - Dynamic Coloring
     - Pop up information and change color on mouse hover
 
-<h1>corner-buttons branch<h1>
+<h2>corner-buttons branch</h2>
 
   I began finding additional data for the teams staying at the 3 hotels. I used css to scale them into individual columns which will serve as buttons. These buttons are a key feature of this web map and will be the primary user interaction to direct the map to pan to the different hotels.
 
@@ -43,7 +43,7 @@ I am going to use the rotate feature as a small button.
 
 Icon attribution html: Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
-
+<h2>espn-wwos-dataset branch</h2>
 *ESPN Wide World of Sports OSMBuildings GeoJSON*
 
 I have exported a geojson of the ESPN WWoS Complex of buildings, these objects are missing the height and color attributes
