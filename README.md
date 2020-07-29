@@ -1,4 +1,4 @@
-# NBA Bubble Hotel Locations outside of Orlando
+# NBA Bubble Hotel Locations outside of Orlando, FL.
 map675-module-01-once-aday-assignment-01
 
 ## 3D Building Data
@@ -10,6 +10,7 @@ I am utilizing [Open Street Map Buildings](https://osmbuildings.org/) to render 
 - Used https://overpass-turbo.eu/ to download all raw data of OSMB data within bounding box of Disney World and portions of outer Orlando as GeoJSON
 - Filtered down the data into three distinct GeoJSON files of each of the three hotels
 - Plan to use https://github.com/kekscom/osmbuildings to render the buildings and apply different stylings
+- Update: Additionally added the ESPN Wide World of Sports Complex to my map; I paired down the data using the command line with ogrinfo.
 
 *Rendering steps*:
 - Used jquery .getJSON method to read in first hotel from file, took some effort to get the json formatted and read in correctly
@@ -44,7 +45,8 @@ I am going to use the rotate feature as a small button.
 Icon attribution html: Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 <h2>espn-wwos-dataset branch</h2>
-*ESPN Wide World of Sports OSMBuildings GeoJSON*
+
+*ESPN Wide World of Sports OSMBuildings GeoJSON*:
 
 I have exported a geojson of the ESPN WWoS Complex of buildings, these objects are missing the height and color attributes
 that tell the OSMB API to give the buildings 3D height (in meters) and color them when rendered on the map.
