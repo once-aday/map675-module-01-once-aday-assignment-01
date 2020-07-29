@@ -1,8 +1,9 @@
 # NBA Bubble Hotel Locations outside of Orlando, FL.
 map675-module-01-once-aday-assignment-01
 
-**Github Pages Link to Web Map:**
-https://once-aday.github.io/map675-module-01-once-aday-assignment-01/
+
+[**Github Pages Link to Web Map:**](https://once-aday.github.io/map675-module-01-once-aday-assignment-01/)
+
 
 ## 3D Building Data
 
