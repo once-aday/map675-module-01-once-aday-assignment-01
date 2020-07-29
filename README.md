@@ -219,3 +219,7 @@ roofColor: String (80.0)
 Now the data prep process is complete for the ESPN Complex Building dataset.
 
 If nothing went wrong and all the new values are accurate I can add this geojson file as a fourth dataset to my webmap..
+
+I removed the whitespace that was appearing on the top and left side of the page by using a "universal selector" based on this link:
+
+https://stackoverflow.com/questions/18772154/white-space-at-top-of-page
