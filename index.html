@@ -60,6 +60,23 @@
   cursor: pointer;
 }
 
+.place-box  {
+  border-radius: 5px 5px 5px 5px;
+  background-color: rgba(209, 209, 208, 0.90);
+  /* padding: 20px; */
+  width: 40px;
+  height: 40px;
+  position: relative;
+  float: left;
+  padding: 10px;
+  margin: 90px 10px 10px 10px;
+  bottom: 0%;
+  /* position: fixed; */
+  /* bottom:0; */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
 #destino-box {
   border: 3px solid rgba(6, 208, 29,0.50);
 }
@@ -68,6 +85,10 @@
 }
 #yacht-box {
   /* border: 8px solid rgba(255,128,0,0.50); */
+  border: 3px solid #f7f7f7;
+}
+
+#wwos-box {
   border: 3px solid #f7f7f7;
 }
 .team-icon {
@@ -81,6 +102,12 @@
 .team-icon img {
    width: 100%;
    /* height: 100%; */
+}
+#description img {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  position: absolute;
 }
 #title {
   font-family: 'Bebas Neue', cursive;
@@ -208,11 +235,17 @@ a {
 </div>
 </div>
 
+<div id="wwos-box" class="place-box">
+  <div class="team-icon">
+  <img src="images/espnwwos-desktop-logo.png" alt="espn_wwos">
+</div>
+</div>
+
 
 <div id='description'>Three hotels groups seen below will be the new home
   of USA professional basketball<br> teams as the NBA restarts
 it's 2019-20 season at Disney World outside of Orlando, Florida.<br>
-Tap on a group to see a 3d rendering of each hotel and find out where your favorite team is staying.</div>
+Tap on a group to see a 3d rendering of each hotel and find out where your favorite team is staying. Rotate using <img src="images/ui.svg"></div>
 <div id='title'>NBA Bubble</div>
 <div id='info-panel-wrapper'>
 <div id='rotate-btn'></div>
@@ -240,9 +273,11 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
     // map.addMapTiles('https://{s}.tiles.mapbox.com/v3/[pk.eyJ1Ijoicm9jay1vbiIsImEiOiJjazdmamdqM2swM2tiM2RzMTVzZHo0azE4In0.R7p1gm6-ACCcAzC68BfdXw]/{z}/{x}/{y}.png');
     map.addMapTiles('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
-    var destino_text = "Hotel 1<br>Gran Destino Tower <a href='https://disneyworld.disney.go.com/resorts/coronado-springs-resort/' target='_blank'>Official Website</a>"
-    var floridian_text = "Hotel 2<br>Grand Floridian <a href='https://disneyworld.disney.go.com/resorts/grand-floridian-resort-and-spa/' target='_blank'>Official Website</a>"
-    var yacht_text = "Hotel 3<br>The Yacht Club <a href='https://disneyworld.disney.go.com/resorts/yacht-club-resort/' target='_blank'>Official Website</a>"
+    var destino_text = "Hotel 1<br>Gran Destino Tower <a href='https://disneyworld.disney.go.com/resorts/coronado-springs-resort/' target='_blank'><br>Official Website</a>"
+    var floridian_text = "Hotel 2<br>Grand Floridian <a href='https://disneyworld.disney.go.com/resorts/grand-floridian-resort-and-spa/' target='_blank'><br>Official Website</a>"
+    var yacht_text = "Hotel 3<br>The Yacht Club <a href='https://disneyworld.disney.go.com/resorts/yacht-club-resort/' target='_blank'><br>Official Website</a>"
+    var wwos_text = "Game Time<br>ESPN Wide World of Sports <a href='https://www.espnwwos.com/' target='_blank'><br>Official Website</a>"
+
     // Load Gran destino
     // Loc: 28.3629923, -81.5719927
     $.getJSON('data/gran_destino_tower.geojson', function (data) {
@@ -264,6 +299,15 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
         // map.addGeoJSON(data);
         map.addGeoJSON(data, {scale: 1});
       });
+
+    // Load ESPN Wide World of Sports
+    $.getJSON('data/espn_wide_world_sports_val_updates.geojson', function (data) {
+        console.log(data);
+        // map.addGeoJSON(data);
+        map.addGeoJSON(data, {scale: 1});
+      });
+
+
       var currentHotel = 'destino';
       var rotateStatus = false;
       var gid;
@@ -275,6 +319,7 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
                adjustMap(17, 45, [28.3629923, -81.5719927]);
                $("#yacht-box").css({border: '3px solid #f7f7f7'});
                $("#floridian-box").css({border: '3px solid #f7f7f7'});
+               $("#wwos-box").css({border: '3px solid #f7f7f7'});
                $("#hotel-info").html(destino_text);
                currentHotel = 'destino';
         });
@@ -303,6 +348,7 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
                adjustMap(17, 45, [28.410967, -81.5879303])
                $("#yacht-box").css({border: '3px solid #f7f7f7'});
                $("#destino-box").css({border: '3px solid #f7f7f7'});
+               $("#wwos-box").css({border: '3px solid #f7f7f7'});
                $("#hotel-info").html(floridian_text);
                currentHotel = 'floridian';
 
@@ -321,9 +367,29 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
                adjustMap(17, 45, [28.3701879, -81.5587651])
                $("#floridian-box").css({border: '3px solid #f7f7f7'});
                $("#destino-box").css({border: '3px solid #f7f7f7'});
+               $("#wwos-box").css({border: '3px solid #f7f7f7'});
                $("#hotel-info").html(yacht_text);
                currentHotel = 'yacht';
              });
+
+         // WWoS Box
+         $('#wwos-box').mouseover(function(event) {
+                $("#wwos-box").css({border: '3px solid rgb(240, 90, 108,0.50)'});
+         });
+         $('#wwos-box').mouseout(function(event) {
+           if (currentHotel !== 'wwos') {
+             $("#wwos-box").css({border: '3px solid #f7f7f7'});
+           }
+         });
+         $('#wwos-box').click(function(event) {
+                console.log("yacht Button pressed")
+                adjustMap(17, 45, [28.337867, -81.555896])
+                $("#floridian-box").css({border: '3px solid #f7f7f7'});
+                $("#destino-box").css({border: '3px solid #f7f7f7'});
+                $("#yacht-box").css({border: '3px solid #f7f7f7'});
+                $("#hotel-info").html(wwos_text);
+                currentHotel = 'wwos';
+              });
 
          $('#rotate-btn').click(function(event) {
                 console.log("Rotate Button pressed")
