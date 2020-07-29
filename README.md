@@ -1,6 +1,9 @@
 # NBA Bubble Hotel Locations outside of Orlando, FL.
 map675-module-01-once-aday-assignment-01
 
+**Github Pages Link to Web Map:**
+https://once-aday.github.io/map675-module-01-once-aday-assignment-01/
+
 ## 3D Building Data
 
 I am utilizing [Open Street Map Buildings](https://osmbuildings.org/) to render 3D models of the hotels where NBA players are staying during their restarted 2019-20 season.
@@ -174,7 +177,8 @@ horse: String (254.0)
 
 motor_vehi: String (254.0)
 enterance: String (254.0)
-wallColor: String (80.0)```
+wallColor: String (80.0)
+```
 
 
 **Add roofColor**
@@ -188,7 +192,8 @@ motor_vehi: String (254.0)
 
 enterance: String (254.0)
 wallColor: String (80.0)
-roofColor: String (80.0)```
+roofColor: String (80.0)
+```
 
 **Use ogrinfo and SQL to update Height property to default to 25m**
 
