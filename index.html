@@ -217,20 +217,7 @@ a {
     </div>
 
   </div>
-  <!-- Hotel Floridian Box -->
-  <div id ="floridian-box" class="team-box">
-    <div class="team-icon">
-    <img src="images/hotel_floridian/team_icons/76ers.png" alt="76ers">
-    <img src="images/hotel_floridian/team_icons/grizzlies.png" alt="grizzlies">
-    <img src="images/hotel_floridian/team_icons/magic.png" alt="magic">
-    <img src="images/hotel_floridian/team_icons/mavericks.png" alt="mavericks">
-    <img src="images/hotel_floridian/team_icons/nets.png" alt="nets">
-    <img src="images/hotel_floridian/team_icons/pacers.png" alt="pacers">
-    <img src="images/hotel_floridian/team_icons/rockets.png" alt="rockets">
-    <img src="images/hotel_floridian/team_icons/thunder.png" alt="thunder">
-  </div>
 
-</div>
 
 <!-- Hotel Yacht Club Box -->
 <div id="yacht-box" class="team-box">
@@ -243,6 +230,21 @@ a {
   <img src="images/hotel_yacht/team_icons/wizards.png" alt="wizards">
   <!-- <div class='group-number'>G1</div> -->
 </div>
+</div>
+
+<!-- Hotel Floridian Box -->
+<div id ="floridian-box" class="team-box">
+  <div class="team-icon">
+  <img src="images/hotel_floridian/team_icons/76ers.png" alt="76ers">
+  <img src="images/hotel_floridian/team_icons/grizzlies.png" alt="grizzlies">
+  <img src="images/hotel_floridian/team_icons/magic.png" alt="magic">
+  <img src="images/hotel_floridian/team_icons/mavericks.png" alt="mavericks">
+  <img src="images/hotel_floridian/team_icons/nets.png" alt="nets">
+  <img src="images/hotel_floridian/team_icons/pacers.png" alt="pacers">
+  <img src="images/hotel_floridian/team_icons/rockets.png" alt="rockets">
+  <img src="images/hotel_floridian/team_icons/thunder.png" alt="thunder">
+</div>
+
 </div>
 
 <div id="wwos-box" class="place-box">
@@ -271,7 +273,7 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
 
     var map = new OSMBuildings({
     	container: 'map',
-    	position: { latitude: 28.3629923, longitude: -81.5719927 }, // grand destino 28.3629923, -81.5719927
+    	position: { latitude: 28.365149, longitude: -81.566183}, // grand destino 28.3629923, -81.5719927
     	zoom: 10, //16.5
     	minZoom: 10,
     	maxZoom: 20,
@@ -284,8 +286,8 @@ Tap on a group to see a 3d rendering of each hotel and find out where your favor
     map.addMapTiles('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
     var destino_text = "Hotel 1<br>Gran Destino Tower <a href='https://disneyworld.disney.go.com/resorts/coronado-springs-resort/' target='_blank'><br>Official Website</a>"
-    var floridian_text = "Hotel 2<br>Grand Floridian <a href='https://disneyworld.disney.go.com/resorts/grand-floridian-resort-and-spa/' target='_blank'><br>Official Website</a>"
-    var yacht_text = "Hotel 3<br>The Yacht Club <a href='https://disneyworld.disney.go.com/resorts/yacht-club-resort/' target='_blank'><br>Official Website</a>"
+    var floridian_text = "Hotel 3<br>Grand Floridian <a href='https://disneyworld.disney.go.com/resorts/grand-floridian-resort-and-spa/' target='_blank'><br>Official Website</a>"
+    var yacht_text = "Hotel 2<br>The Yacht Club <a href='https://disneyworld.disney.go.com/resorts/yacht-club-resort/' target='_blank'><br>Official Website</a>"
     var wwos_text = "Game Time<br>ESPN Wide World of Sports <a href='https://www.espnwwos.com/' target='_blank'><br>Official Website</a>"
 
     // Load Gran destino
