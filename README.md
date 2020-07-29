@@ -27,7 +27,7 @@ Next:
     - Dynamic Coloring
     - Pop up information and change color on mouse hover
 
-*corner-buttons branch*
+<h1>corner-buttons branch<h1>
 
   I began finding additional data for the teams staying at the 3 hotels. I used css to scale them into individual columns which will serve as buttons. These buttons are a key feature of this web map and will be the primary user interaction to direct the map to pan to the different hotels.
 
@@ -68,11 +68,12 @@ Get ogrinfo on large raw export of buildings:
 
 `ogrinfo DisneyWorldandSurrounding.geojson`
 
- `INFO: Open of `DisneyWorldandSurrounding.geojson'
-      using driver `GeoJSON' successful.
+ `INFO: Open of 'DisneyWorldandSurrounding.geojson'
+      using driver 'GeoJSON' successful.
 1: DisneyWorldandSurrounding`
 
 *Get the boundingbox xmin ymin xmax ymax.*
+
  I went to google maps and created pins in the bottom left and top right around the ESPN complex in order to grab the x,y values needed for a bounding box.
 
 `ogr2ogr -spat -81.562182 28.333004 -81.550569 28.341744 -f GeoJSON espn_wide_world_sports_clip.geojson DisneyWorldandSurrounding.geojson`
@@ -90,7 +91,7 @@ Check ogrinfo for new GeoJSON file that was clipped to the ESPN WWoS bounding bo
 `ogrinfo espn_wide_world_sports.geojson espn_wide_world_sports`
 
 Selection of Return:
-`covered (String) = (null)
+```covered (String) = (null)
   intermittent (String) = (null)
   bicycle (String) = (null)
   foot (String) = (null)
@@ -99,11 +100,12 @@ Selection of Return:
   motor_vehicle (String) = (null)
   enterance (String) = (null)
   POLYGON ((-81.5569006 28.3344511,-81.5569006 28.334115,-81.5566731 28.334115,-81.5566731 28.3344511,-81.5569006 28.3344511))
-`
+```
+
 `ogrinfo -so espn_wide_world_sports.geojson espn_wide_world_sports`
 
-`INFO: Open of `espn_wide_world_sports.geojson'
-      using driver `GeoJSON' successful.
+```INFO: Open of 'espn_wide_world_sports.geojson'
+      using driver 'GeoJSON' successful.
 
 Layer name: espn_wide_world_sports
 Geometry: Polygon
@@ -133,60 +135,57 @@ name: String (0.0)
 type: String (0.0)
 addr:state: String (0.0)
 sport: String (0.0)
-note: String (0.0)`
+note: String (0.0)```
 
-etc.
 
 **Use ogrinfo and SQL to Insert a new Column, wallColor, roofColor**
 
-https://gis.stackexchange.com/questions/59705/gdal-sql-syntax-to-add-field-an-put-values
+* https://gis.stackexchange.com/questions/59705/gdal-sql-syntax-to-add-field-an-put-values
 
-https://gdal.org/user/sql_sqlite_dialect.html
+* https://gdal.org/user/sql_sqlite_dialect.html
 
 
-ogrinfo [ds_name] -sql "ALTER TABLE [layer_name] ADD COLUMN [new_column_name] [new_column_type]"
+`ogrinfo [ds_name] -sql "ALTER TABLE [layer_name] ADD [new_column_name] [new_column_type]"`
 
-ogrinfo espn_wide_world_sports.geojson -sql "ALTER TABLE espn_wide_world_sports ADD COLUMN wallColor TEXT"
-
-ogrinfo -sql "alter table espn_wide_world_sports add wallColor text" espn_wide_world_sports.geojson
+`ogrinfo -sql "alter table espn_wide_world_sports add wallColor text" espn_wide_world_sports.geojson`
 
 **convert geojson to shapefile**
 
 `ogr2ogr -f "ESRI Shapefile" espn_wide_world_sports.shp espn_wide_world_sports.geojson`
 
-the above commands weren't actually adding the new column, now I am trying the same command with a shapefile version
+The above commands weren't actually adding the new column, now I am trying the same command with a shapefile version
 
-ogrinfo -sql "alter table espn_wide_world_sports add wallColor text" espn_wide_world_sports.shp
+`ogrinfo -sql "alter table espn_wide_world_sports add wallColor text" espn_wide_world_sports.shp`
 
-It did work as SHAPEFILE (instead of GeoJSON):
+**It did work as SHAPEFILE (instead of GeoJSON):**
 
-'ogrinfo -sql "alter table espn_wide_world_sports add wallColor text" espn_wide_world_sports.shp'
+`ogrinfo -sql "alter table espn_wide_world_sports add wallColor text" espn_wide_world_sports.shp`
 
 
-'ogrinfo -so espn_wide_world_sports.shp espn_wide_world_sports'
+`'ogrinfo -so espn_wide_world_sports.shp espn_wide_world_sports'`
 
-...
-`bicycle: String (254.0)
+
+```bicycle: String (254.0)
 foot: String (254.0)
 horse: String (254.0)
 
 motor_vehi: String (254.0)
 enterance: String (254.0)
-wallColor: String (80.0)`
+wallColor: String (80.0)```
 
 
-Add roofColor
+**Add roofColor**
 
 `ogrinfo -sql "alter table espn_wide_world_sports add roofColor text" espn_wide_world_sports.shp`
 
-`'ogrinfo -so espn_wide_world_sports.shp espn_wide_world_sports'`
+`ogrinfo -so espn_wide_world_sports.shp espn_wide_world_sports`
 
-`horse: String (254.0)
+```horse: String (254.0)
 motor_vehi: String (254.0)
 
 enterance: String (254.0)
 wallColor: String (80.0)
-roofColor: String (80.0)`
+roofColor: String (80.0)```
 
 **Use ogrinfo and SQL to update Height property to default to 25m**
 
@@ -207,6 +206,6 @@ roofColor: String (80.0)`
 `ogr2ogr -f "GeoJSON" espn_wide_world_sports_val_updates.geojson espn_wide_world_sports.shp`
 
 
-Now the data prep process is complete for the ESPN Complex Building dataset
+Now the data prep process is complete for the ESPN Complex Building dataset.
 
 If nothing went wrong and all the new values are accurate I can add this geojson file as a fourth dataset to my webmap..
