@@ -2,8 +2,9 @@
 map675-module-01-once-aday-assignment-01
 
 
-[**Github Pages Link to Web Map:**](https://once-aday.github.io/map675-module-01-once-aday-assignment-01/)
+**Github Pages Link to Web Map:**
 
+<a href="https://once-aday.github.io/map675-module-01-once-aday-assignment-01/" target="\_blank">https://once-aday.github.io/map675-module-01-once-aday-assignment-01/</a>
 
 ## 3D Building Data
 
