@@ -135,7 +135,8 @@ name: String (0.0)
 type: String (0.0)
 addr:state: String (0.0)
 sport: String (0.0)
-note: String (0.0)```
+note: String (0.0)
+```
 
 
 **Use ogrinfo and SQL to Insert a new Column, wallColor, roofColor**
